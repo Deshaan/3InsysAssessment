@@ -1,0 +1,70 @@
+﻿@model ManageTShirtModel;
+
+<h1>Description of selected Tshirt</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>            
+            <div class="form-group">
+                <label asp-for="tShirt.Image" class="control-label"></label>
+              <img src="@Model.tShirt.ImageSrc"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Size" class="control-label"></label>
+                <span>@Model.tShirt.Size</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Price" class="control-label"></label>
+                <span>@Model.tShirt.Price</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Color" class="control-label"></label>
+                <div style="width:50px; height:50px; background-color:@Model.tShirt.Color"></di>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Made" class="control-label"></label>
+                <span>@Model.tShirt.Made</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Style" class="control-label"></label>
+                <span>@Model.tShirt.Style</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Gender" class="control-label"></label>
+                <span>@Model.tShirt.Gender</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Description" class="control-label"></label>
+                <span>@Model.tShirt.Description</span>
+            </div>
+            <div class="form-group">
+                 <a asp-action="Save" asp-route-id=@Model.tShirt.Id>Edit</a> |                   
+                 <a class="Delete" href="javascript:;" onclick="callDelete(@Model.tShirt.Id)">Delete</a>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+        function callDelete(deleteId)
+        {
+            if (confirm("Do you want to delete this record?")) {
+             $.ajax({
+                    type: "POST",
+                    url: "/Home/Delete/"+deleteId,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {
+                      window.location.reload();
+                    }
+                }).done(function (response) {
+               console.log(response)
+                });
+            }
+            
+        }        
+</script>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,101 @@
+﻿@model ManageTShirtModel;
+
+<h1>@(Model.NewTShirt ? "Add New T-Shirt" : "Edit T-Shirt")</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save" enctype="multipart/form-data" id="formSave">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="tShirt.Size" class="control-label"></label>
+                <select asp-for="tShirt.Size" class="form-control" asp-items="ViewBag.DepartmentID">
+                    <option value="">-- Select Size --</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <span asp-validation-for="tShirt.Size" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Price" class="control-label"></label>
+                <input asp-for="tShirt.Price" type="number" step="0.01" min="0" max="5000" class="form-control" />
+                <span asp-validation-for="tShirt.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Color" class="control-label"></label>
+                <input asp-for="tShirt.Color" type="color" class="form-control" />
+                <span asp-validation-for="tShirt.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Made" class="control-label"></label>
+                <input asp-for="tShirt.Made" class="form-control" />
+                <span asp-validation-for="tShirt.Made" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Style" class="control-label"></label>
+                <select asp-for="tShirt.Style" class="form-control" asp-items="ViewBag.DepartmentID">
+                    <option value="">-- Select Style --</option>
+                    <option value="Round neck">Round neck</option>
+                    <option value="V neck">V neck</option>
+                </select>
+                <span asp-validation-for="tShirt.Style" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Gender" class="control-label"></label>
+
+                @Html.RadioButtonFor(model => model.tShirt.Gender, "Male", new { @id = "optionMale"})
+                <label for="optionMale">Male</label>
+
+                @Html.RadioButtonFor(model => model.tShirt.Gender, "Female", new { @id = "optionFemale"})
+                <label for="optionFemale">Female</label>
+                <span asp-validation-for="tShirt.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.ImageFile" class="control-label"></label>
+                <input asp-for="tShirt.ImageFile" type="file" accept=".png,.jpg,.jpeg" class="form-control" />
+                @Html.HiddenFor(m=>m.tShirt.Image)
+                <span asp-validation-for="tShirt.ImageFile" class="text-danger" />
+                @if (!Model.NewTShirt && !string.IsNullOrEmpty(Model.tShirt.ImageSrc))
+                {
+                    <img src="@Model.tShirt.ImageSrc" style="width:200px;height:200px;" />
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="tShirt.Description" class="control-label"></label>
+                <input asp-for="tShirt.Description" class="form-control" />
+                <span asp-validation-for="tShirt.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="tShirt.Id" type="hidden" class="form-control" />
+                <input type="button" onclick="Save()" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+    <script type="text/javascript">
+        //Delete event handler.
+        function Save() {
+            if ($("#formSave").valid()) {
+                var isNew = '@Model.NewTShirt';
+
+                var message = isNew == "True" ? "Are you sure you want to save this record?" : "Are you sure you want to edit this record?";
+                if (confirm(message)) {
+                    $("#formSave").submit();
+                }
+            }
+        }
+    </script>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3Insys.Assessments.API", "3Insys.Assessments.API\3Insys.Assessments.API.csproj", "{483B331C-67A7-459C-9691-D66360A1822B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3Insys.Assessment", "3Insys.Assessment\3Insys.Assessment.csproj", "{465BFC3B-862B-4CEE-BF2C-D497D6F8CF5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{483B331C-67A7-459C-9691-D66360A1822B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483B331C-67A7-459C-9691-D66360A1822B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483B331C-67A7-459C-9691-D66360A1822B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483B331C-67A7-459C-9691-D66360A1822B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465BFC3B-862B-4CEE-BF2C-D497D6F8CF5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465BFC3B-862B-4CEE-BF2C-D497D6F8CF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465BFC3B-862B-4CEE-BF2C-D497D6F8CF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465BFC3B-862B-4CEE-BF2C-D497D6F8CF5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB55DC8F-4308-472D-9D77-AB3F49CF2330}
+	EndGlobalSection
+EndGlobal
