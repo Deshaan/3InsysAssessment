@@ -15,6 +15,7 @@ namespace _3Insys.Assessment.Models
         [Required]
         public string Color { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 3)]
         public string Made { get; set; }
         [Required]
         public string Style { get; set; }
@@ -33,8 +34,9 @@ namespace _3Insys.Assessment.Models
         }
         public byte[] Image { get; set; }
         [Required]
+        [StringLength(500, MinimumLength = 10)]
         public string Description { get; set; }
-        [Required]
+       
         public IFormFile ImageFile { get; set; }
         public string ImageSrc
         {

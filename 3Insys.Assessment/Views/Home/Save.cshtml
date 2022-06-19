@@ -38,26 +38,43 @@
                 <label asp-for="tShirt.Style" class="control-label"></label>
                 <select asp-for="tShirt.Style" class="form-control" asp-items="ViewBag.DepartmentID">
                     <option value="">-- Select Style --</option>
-                    <option value="Round neck">Round neck</option>
-                    <option value="V neck">V neck</option>
+                    <option value="The basic half-sleeve T-shirt">The basic half-sleeve T-shirt</option>
+                    <option value="The V-neck T-shirt">The V-neck T-shirt</option>
+                    <option value="The ringer T-shirt">The ringer T-shirt</option>
+                    <option value="The cap-sleeve T-shirt">The cap-sleeve T-shirt</option>
+                    <option value="The cap-sleeve T-shirt">The cap-sleeve T-shirt</option>
+                    <option value="The turtle-neck T-shirt">The turtle-neck T-shirt</option>
+                    <option value="The turtle-neck T-shirt">The turtle-neck T-shirt</option>
+                    <option value="The muscle T-shirt">The muscle T-shirt</option>
+                    <option value="The polo-collar T-shirt">The polo-collar T-shirt</option>
+                    <option value="The scoop-neck T-shirt">The scoop-neck T-shirt</option>
+                    <option value="The Henley-collar T-shirt">The Henley-collar T-shirt</option>
                 </select>
                 <span asp-validation-for="tShirt.Style" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:flex; flex-direction:column">
                 <label asp-for="tShirt.Gender" class="control-label"></label>
-
-                @Html.RadioButtonFor(model => model.tShirt.Gender, "Male", new { @id = "optionMale"})
-                <label for="optionMale">Male</label>
-
-                @Html.RadioButtonFor(model => model.tShirt.Gender, "Female", new { @id = "optionFemale"})
-                <label for="optionFemale">Female</label>
+                <div>
+                    <div class="form-check  form-check-inline">
+                        @Html.RadioButtonFor(model => model.tShirt.Gender, "Male", new { @id = "optionMale", @class="form-check-input"})
+                        <label class="form-check-label" for="optionMale">
+                            Male
+                        </label>
+                    </div>
+                    <div class="form-check  form-check-inline">
+                        @Html.RadioButtonFor(model => model.tShirt.Gender, "Female", new { @id = "optionFemale", @class="form-check-input"})
+                        <label class="form-check-label" for="optionFemale">
+                            Female
+                        </label>
+                    </div>
+                </div>
                 <span asp-validation-for="tShirt.Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="tShirt.ImageFile" class="control-label"></label>
                 <input asp-for="tShirt.ImageFile" type="file" accept=".png,.jpg,.jpeg" class="form-control" />
                 @Html.HiddenFor(m=>m.tShirt.Image)
-                <span asp-validation-for="tShirt.ImageFile" class="text-danger" />
+                <span id="ImageValue" class="text-danger" />
                 @if (!Model.NewTShirt && !string.IsNullOrEmpty(Model.tShirt.ImageSrc))
                 {
                     <img src="@Model.tShirt.ImageSrc" style="width:200px;height:200px;" />
@@ -65,7 +82,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="tShirt.Description" class="control-label"></label>
-                <input asp-for="tShirt.Description" class="form-control" />
+                <textarea asp-for="tShirt.Description" class="form-control"></textarea>
                 <span asp-validation-for="tShirt.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -86,16 +103,24 @@
     }
     }
 
-    <script type="text/javascript">
-        //Delete event handler.
-        function Save() {
-            if ($("#formSave").valid()) {
-                var isNew = '@Model.NewTShirt';
-
+<script type="text/javascript">
+    //Delete event handler.
+    function Save() {
+        $("#ImageValue").text("");
+        if ($("#formSave").valid()) {
+            var isNew = '@Model.NewTShirt';
+            console.log(isNew == "TRUE" && $("#tShirt_ImageFile").val() == '',isNew);
+            if(isNew == "True" && $("#tShirt_ImageFile").val() == '')
+            {
+                $("#ImageValue").text("The Image field is required.");
+            }
+            else
+            {
                 var message = isNew == "True" ? "Are you sure you want to save this record?" : "Are you sure you want to edit this record?";
                 if (confirm(message)) {
                     $("#formSave").submit();
                 }
             }
         }
-    </script>
+    }
+</script>
