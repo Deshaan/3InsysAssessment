@@ -1,13 +1,8 @@
 ﻿using _3Insys.Assessment.ClientFactory;
 using _3Insys.Assessment.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace _3Insys.Assessment.Controllers

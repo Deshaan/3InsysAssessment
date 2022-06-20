@@ -90,12 +90,12 @@ namespace _3Insys.Assessments.API.Controllers
         {
             try
             {
-                var movie = _context.TShirts.Where(r => r.Id.Equals(id)).FirstOrDefault();
+                var tshirt = _context.TShirts.Where(r => r.Id.Equals(id)).FirstOrDefault();
 
-                if (movie == null)
-                    return BadRequest("no movie found");
+                if (tshirt == null)
+                    return BadRequest("no tshirt found");
 
-                _context.TShirts.Remove(movie);
+                _context.TShirts.Remove(tshirt);
                 _context.SaveChanges();
 
                 return Ok();

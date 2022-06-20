@@ -3,7 +3,6 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Text;
-using static System.Net.Mime.MediaTypeNames;
 using System.Net.Http.Headers;
 
 namespace _3Insys.Assessment.ClientFactory
